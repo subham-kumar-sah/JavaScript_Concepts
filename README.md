@@ -9,3 +9,12 @@
 --> Debounce and throttle are the two event handling techniques. They prevent the unnecessary api calls.
 --> Debouncing is the method in which if we have a fixed delay betwwen two events then only the function get's fired up and if time taken is less than the delay assigned then then the call is not made.
 --> Throttling is the method in which the method is fired initially and then after a certain interval it keeps firing the method after that defined interval unlike debouncing in which call is made only if the delay is met between two events.
+
+Promises:
+--> Promise objects are immutable, resolved just once.
+--> Promises also gurantees that our code will be for sure executed unlike callbacks.
+--> For creating our own promise we need the new keyword and the Promise constructor and pass a function in the constructor(func(resolve, reject){}), which again has two agruments which are functions, these will help us in fulfilling or rejecting a promise.
+--> In case of promise chaining we need to return the data(value or a function) to maintain the exact flow.
+--> promise.all() receives array of promises and returns array of data which is result of all the promises.
+--> promise.all() will wait for all the promises to finish and the give the result.
+--> If any of the promises fail inside the promise.all(), then it will throw error immediately and will not wait for any promises to finish.
