@@ -17,7 +17,7 @@ const createOrder = (cart) => {
       const orderId = "12345";
       setTimeout(() => {
         resolve(orderId);
-      }, 3000);
+      }, 2000);
     }
   });
   return promiseOrderId;
@@ -25,12 +25,34 @@ const createOrder = (cart) => {
 
 const proceedToPayment = (orderId) => {
   return new Promise((resolve, reject) => {
-    if (orderId) {
+    if (!orderId) {
       setTimeout(() => {
         resolve("Payment Successful");
       }, 2000);
     } else {
-      reject(new Error("Payment Failed").message);
+      setTimeout(() => {
+        reject(new Error("Payment Failed").message);
+      }, 2000);
+    }
+  });
+};
+
+const showOrderSummary = (message) => {
+  const orderSummary = {
+    orderId: "12345",
+    message: message,
+    items: cart,
+  };
+  return new Promise((resolve, reject) => {
+    if (message) {
+      setTimeout(() => {
+        resolve(orderSummary);
+      }, 2000);
+    } else {
+      const err = new Error("Failed to show order summary");
+      setTimeout(() => {
+        reject(err);
+      });
     }
   });
 };
@@ -42,6 +64,10 @@ createOrder(cart)
   })
   .then((response) => {
     console.log(response);
+    return showOrderSummary(response);
+  })
+  .then((response) => {
+    console.log("Order Summary:", response);
   })
   .catch((err) => {
     console.log(err);
